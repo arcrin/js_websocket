@@ -1,0 +1,20 @@
+<!DOCTYPEhtml> <html><head></head><body>
+<h1>Connected users: <span id="count">...</span></h1>
+// Short url to a CDN version of the autobahn.js lib
+// Visit https://github.com/crossbario/autobahn-js
+// for the real deal
+<script src="http://goo.gl/1pfDD1"></script>
+<script>
+    /* If you are using an old browser, this part of the code may look
+      different. This will work starting from IE11
+      and will require vendor prefixes or shims in other cases.*/
+    var sock = new WebSocket("ws://127.0.0.1:9000");
+    /* Like with the Python version, you can then hook on sock.onopen() or
+      sock.onclose() if you wish. But for this example with only need
+      to react to receiving messages: */
+    sock.onmessage = function(e){
+        var span = document.getElementById('count');
+        span.innerHTML=e.data;
+    }
+</script>
+</body></html>
